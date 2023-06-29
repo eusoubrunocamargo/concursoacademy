@@ -1,13 +1,10 @@
 import styles from '@/styles/FormInput.module.css'
 import { useState } from 'react';
-// import { supabase } from '../../supabase';
-// import { useAlert } from '@/hooks/useAlert';
 
 function EmailInput({ signUpForm , setSignUpForm, type }){
 
     const [errorMessage, setErrorMessage] = useState('');
     const [hasError, setHasError] = useState(false);
-    // const [existEmail, setExistEmail] = useState(null);
 
     async function checkEmailExists(email){
         const { data , error } = await supabase.from('profiles').select().eq('email', email);
@@ -21,9 +18,7 @@ function EmailInput({ signUpForm , setSignUpForm, type }){
     async function handleBlur(){
 
         const email = signUpForm.email.value;
-        // console.log(email);
 
-        //check if email has valid format according to regex
         const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
         if(!email){
             setHasError(false);
@@ -50,30 +45,7 @@ function EmailInput({ signUpForm , setSignUpForm, type }){
             });
             return;
         } 
-        
-        // if(type === 'signup') {
-        //     // console.log('entrou no checkemail');
-        //     const emailExists = await checkEmailExists(email);
-        //     // console.log(emailExists);
-        //     if(emailExists){
-        //         // console.log('entrou no exist');
-        //         setErrorMessage('Este e-mail já está em uso');
-        //         setHasError(true);
-        //         setSignUpForm({
-        //             ...signUpForm,
-        //             email: {
-        //                 // value: email,
-        //                 valid: false,
-        //             }});
-        //         } else {
-        //             setSignUpForm({
-        //                 ...signUpForm,
-        //                 email: {
-        //                     value: email,
-        //                     valid: true,
-        //                 }});
-        //         }
-        // }        
+          
             
     };
 
@@ -119,8 +91,6 @@ function EmailInput({ signUpForm , setSignUpForm, type }){
                 onFocus={handleFocus}
                 // required
             />
-            {/* <label htmlFor='email'>Email</label> */}
-            {/* {hasError && <span className={styles.errorMessage}>{errorMessage}</span>} */}
         </div>
     )
 }

@@ -38,7 +38,6 @@ function PassInput({ signUpForm , setSignUpForm }){
 
         const newPassValue = event.target.value;
 
-        // console.log(newPassValue);
         
         passRequirements.forEach((requirement) => {
             const element = document.getElementById(requirement.id);
@@ -49,7 +48,6 @@ function PassInput({ signUpForm , setSignUpForm }){
             if(element)element.classList.toggle(`${styles.greenPass}`, isValid);
         });
 
-        // console.log(passRequirements);
 
         const allReqMet = passRequirements.every((req) => req.valid);
 
@@ -84,11 +82,9 @@ function PassInput({ signUpForm , setSignUpForm }){
                     name='password'
                     placeholder='********'
                     className={`${hasError&&styles.invalidInput}`}
-                    // onBlur={handleBlur}
                     onChange={handleChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    // required
                 />
                 <button className={styles.btnRevealPass} onClick={togglePassVisibility}>{passVisible ? 'Ocultar' : 'Mostrar'}</button>
             </div>
