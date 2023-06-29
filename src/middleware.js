@@ -1,21 +1,24 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
+import { supabase } from '../supabase';
+import jwtDecode from 'jwt-decode';
 
-/**
- * Any Server Component route that uses a Supabase client must be added to this
- * middleware's `matcher` array. Without this, the Server Component may try to make a
- * request to Supabase with an expired `access_token`.
- */
-export async function middleware(req) {
+export default async function middleware(req) {
   const res = NextResponse.next();
 
-  const supabase = createMiddlewareClient({ req, res });
+  // console.log(req.cookies);
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // const supabase = createMiddlewareClient({ req, res });
 
-  if (!session) {
+  const token = req.cookies.get('access_token')?.value;
+  // console.log(`token: ${token}`);
+
+  if (!token) {
+    return NextResponse.redirect('http://localhost:3000/');
+  }
+
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
     return NextResponse.redirect('http://localhost:3000/');
   }
 
