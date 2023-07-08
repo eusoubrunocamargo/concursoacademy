@@ -1,0 +1,25 @@
+.headerContainer {
+    background-color: #213363;
+    max-width: 144rem;
+    width: 100vw;
+    height: 12rem;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #F8F9FA;
+}
+
+.headerContainer button {
+    background-color: #F8F9FA;
+    border: none;
+    color: #213363;
+    width: 10rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-size: 1.6rem; */
+    /* font-weight: 700; */
+    /* cursor: pointer; */
+}

@@ -1,0 +1,107 @@
+.containerAnswer {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+
+.optionContainer {
+    width: 100%;
+    min-height: 4rem;
+    border: solid 1px #1e1e1e;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding: .5rem;
+    cursor: pointer;
+    gap: .5rem;
+}
+
+.optionContainer:hover {
+    border: solid 2px #1e1e1e;
+}
+
+.answerContainer {
+    display: grid;
+    background-color: #FFA629;
+    border: solid 1px #1e1e1e;
+    padding: 1rem;
+    border-radius: .5rem;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+
+        /* display: flex; */
+        /* flex-direction: column; */
+        gap: .5rem;
+
+    }
+        
+}
+
+.activeAnswer {
+    background-color: #FFA629;
+}
+
+.confidenceSelect, .errorSelect {
+    width: 100%;
+    height: 3rem;
+    border: solid 1px #1e1e1e;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: 0 1rem;
+
+    @media screen and (max-width: 768px) {
+        grid-area: 1/1;
+    }
+}
+
+.errorSelect {
+    @media screen and (max-width: 768px) {
+        grid-area: 2/1;
+    }
+}
+
+.btnAnswerQuestions {
+    background-color: #333;
+    grid-area: 1/3;
+    color: #F8F9FA;
+    width: 100%;
+    height: 3rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    @media screen and (max-width: 768px) {
+        grid-area: 3/1;
+    }
+}
+
+.btnAnswerQuestions:hover {
+    border: solid 1px #F8F9FA;
+    /* color: #333; */
+}
+
+.btnAnswerQuestions:disabled {
+    background-color: #999;
+    color: #F8F9FA;
+    cursor: not-allowed;
+}
+
+.isCorrect {
+    background-color: #4BB543;
+}
+
+.notCorrect {
+    background-color: #FF0000;
+}

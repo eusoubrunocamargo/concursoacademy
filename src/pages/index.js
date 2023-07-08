@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css';
 import { useState } from 'react';
 import { supabase } from '../../supabase';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/hooks/useAuth';
 
 const RenderSection = ({ 
   showConfirmEmail, 
@@ -46,9 +47,10 @@ const RenderSection = ({
 
 export default function Home() {
 
+  const { handleLogin } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showConfirmEmail, setShowConfirmEmail] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleLoginSignUp = () => {
     setIsLogin(!isLogin);
@@ -96,27 +98,13 @@ export default function Home() {
   const submitSignInForm = async () => {
     const isFormValid = [signUpForm.email.valid, signUpForm.password.valid].every(valid => valid === true);
     if(isFormValid){
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: signUpForm.email.value,
-          password: signUpForm.password.value,
-        })
-      });
-
-      const data = await res.json();
-      console.log(data);
-      console.log(res.ok);
-      if(res.ok){
-        router.push('/dashboard');
-      } else {
-        console.log(data.error);
+      try {
+        await handleLogin(signUpForm.email.value, signUpForm.password.value);
+      } catch (error) {
+        if(error.message === 'Invalid login credentials'){
+          alert('Email ou senha inválidos');
       }
-    }
-};
+      }}};
 
   return (
     <>
