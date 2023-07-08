@@ -41,6 +41,7 @@ export default function Dashboard() {
         topics, 
         subtopics,
         questions, 
+        loading,
         fetchTopics, 
         fetchSubtopics,
         fetchQuestions,
@@ -129,7 +130,9 @@ export default function Dashboard() {
         return remainingDays;
     }
 
-
+    if(loading) {
+        return <div>Carregando...</div>
+    }
 
     return (
         <>

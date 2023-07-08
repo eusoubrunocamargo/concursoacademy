@@ -5,7 +5,7 @@ import { useAlert } from '@/hooks/useAlert';
 
 export default function Diagnosis({ questions, setOpenDiagnosis }) {
 
-    if (questions.length === 0 || !questions) return <h1>...</h1>
+    
 
     const { saveScore } = useDiagnosis();
     // const { showAlert } = useAlert();
@@ -23,6 +23,8 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const currentQuestion = questionWithPerformance[currentQuestionIndex];
+
+    
 
     console.log(questionWithPerformance);
     
@@ -140,10 +142,13 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
     }
 
     const showFinalScore = questionWithPerformance.every((q) => q.performance !== null);
-    // const showFinalScore = true;
+
     useEffect(() => {
         if(showFinalScore){
             let bruteScore = ((questionWithPerformance.reduce((acc, curr) => acc + curr.performance, 0)) / questionWithPerformance.length);
+            if(bruteScore < 0) {
+                bruteScore = 0;
+            }
             setPerformance(Number(bruteScore*100).toFixed(2));
         }
     }, [showFinalScore]);
@@ -153,6 +158,8 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
         setOpenDiagnosis(false);
         // setUpdateScores(prevState => !prevState);
     }
+
+    if (questions.length === 0 || !questions) return <h1>...</h1>
 
     return (
 
@@ -234,6 +241,111 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
                                         {questionWithPerformance[currentQuestionIndex].user_answer === 'B' && questionWithPerformance[currentQuestionIndex].resultMessage}
                                     </button>
                                     {showConfidence && selectedAnswer === 'B' && 
+                                        <div className={styles.confidenceContainer}>
+                                            <select onChange={handleConfidenceLevel} className={styles.selectConfidence}>
+                                                <option value=''>Nível de confiança</option>
+                                                <option value='1'>Tenho certeza</option>
+                                                <option value='2'>Estou em dúvida</option>
+                                                <option value='3'>Não sei</option>
+                                            </select>
+                                            {showErrorType ? <>
+                                                <select onChange={handleErrorType} className={styles.selectErrorType}>
+                                                    <option value=''>Tipo de erro</option>
+                                                    <option value='1'>Não sei o conteúdo</option>
+                                                    <option value='2'>Erro de interpretação</option>
+                                                    <option value='3'>Erro de distração</option>
+                                                </select>
+                                                <button value='salvar' disabled={!errorType} onClick={saveErrorType} className={styles.btnConfirmConfidence}>Salvar</button>
+                                                </> :
+                                                <button value='confirmar' disabled={!confidenceLevel} onClick={submitAnswer} className={styles.btnConfirmConfidence}>Confirmar</button>    
+                                                }
+                                        </div>
+                                    }
+                                </div>
+                                <div className={styles.containerOption}>
+                                    <button disabled={questionWithPerformance[currentQuestionIndex].is_answered} className={`${
+                                        questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'C' &&
+                                        questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isCorrect : ''}
+                                        ${questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'C' &&
+                                        !questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isIncorrect : ''}
+                                        `} 
+                                        onClick={(e) => checkAnswer(e)} value='C'>
+                                        {currentQuestion.option_c}
+                                        {questionWithPerformance[currentQuestionIndex].user_answer === 'C' && questionWithPerformance[currentQuestionIndex].resultMessage}
+                                    </button>
+                                    {showConfidence && selectedAnswer === 'C' && 
+                                        <div className={styles.confidenceContainer}>
+                                            <select onChange={handleConfidenceLevel} className={styles.selectConfidence}>
+                                                <option value=''>Nível de confiança</option>
+                                                <option value='1'>Tenho certeza</option>
+                                                <option value='2'>Estou em dúvida</option>
+                                                <option value='3'>Não sei</option>
+                                            </select>
+                                            {showErrorType ? <>
+                                                <select onChange={handleErrorType} className={styles.selectErrorType}>
+                                                    <option value=''>Tipo de erro</option>
+                                                    <option value='1'>Não sei o conteúdo</option>
+                                                    <option value='2'>Erro de interpretação</option>
+                                                    <option value='3'>Erro de distração</option>
+                                                </select>
+                                                <button value='salvar' disabled={!errorType} onClick={saveErrorType} className={styles.btnConfirmConfidence}>Salvar</button>
+                                                </> :
+                                                <button value='confirmar' disabled={!confidenceLevel} onClick={submitAnswer} className={styles.btnConfirmConfidence}>Confirmar</button>    
+                                                }
+                                        </div>
+                                    }
+                                </div>
+                                <div className={styles.containerOption}>
+                                    <button disabled={questionWithPerformance[currentQuestionIndex].is_answered} className={`${
+                                        questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'D' &&
+                                        questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isCorrect : ''}
+                                        ${questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'D' &&
+                                        !questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isIncorrect : ''}
+                                        `} 
+                                        onClick={(e) => checkAnswer(e)} value='D'>
+                                        {currentQuestion.option_d}
+                                        {questionWithPerformance[currentQuestionIndex].user_answer === 'D' && questionWithPerformance[currentQuestionIndex].resultMessage}
+                                    </button>
+                                    {showConfidence && selectedAnswer === 'D' && 
+                                        <div className={styles.confidenceContainer}>
+                                            <select onChange={handleConfidenceLevel} className={styles.selectConfidence}>
+                                                <option value=''>Nível de confiança</option>
+                                                <option value='1'>Tenho certeza</option>
+                                                <option value='2'>Estou em dúvida</option>
+                                                <option value='3'>Não sei</option>
+                                            </select>
+                                            {showErrorType ? <>
+                                                <select onChange={handleErrorType} className={styles.selectErrorType}>
+                                                    <option value=''>Tipo de erro</option>
+                                                    <option value='1'>Não sei o conteúdo</option>
+                                                    <option value='2'>Erro de interpretação</option>
+                                                    <option value='3'>Erro de distração</option>
+                                                </select>
+                                                <button value='salvar' disabled={!errorType} onClick={saveErrorType} className={styles.btnConfirmConfidence}>Salvar</button>
+                                                </> :
+                                                <button value='confirmar' disabled={!confidenceLevel} onClick={submitAnswer} className={styles.btnConfirmConfidence}>Confirmar</button>    
+                                                }
+                                        </div>
+                                    }
+                                </div>
+                                <div className={styles.containerOption}>
+                                    <button disabled={questionWithPerformance[currentQuestionIndex].is_answered} className={`${
+                                        questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'E' &&
+                                        questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isCorrect : ''}
+                                        ${questionWithPerformance[currentQuestionIndex].is_answered &&
+                                        questionWithPerformance[currentQuestionIndex].user_answer === 'E' &&
+                                        !questionWithPerformance[currentQuestionIndex].is_answered_correctly ? styles.isIncorrect : ''}
+                                        `} 
+                                        onClick={(e) => checkAnswer(e)} value='E'>
+                                        {currentQuestion.option_e}
+                                        {questionWithPerformance[currentQuestionIndex].user_answer === 'E' && questionWithPerformance[currentQuestionIndex].resultMessage}
+                                    </button>
+                                    {showConfidence && selectedAnswer === 'E' && 
                                         <div className={styles.confidenceContainer}>
                                             <select onChange={handleConfidenceLevel} className={styles.selectConfidence}>
                                                 <option value=''>Nível de confiança</option>

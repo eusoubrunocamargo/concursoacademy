@@ -2,30 +2,27 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import { useAuth } from "./useAuth";
 import { useAlert } from "./useAlert";
-// import { unique } from "next/dist/build/utils";
-import { useRouter } from "next/router";
 import { useScores } from "@/contexts/ScoreProvider";
 
 
 export const useDiagnosis = () => {
 
     const { user } = useAuth();
-    const { scores, setScores } = useScores();
+    const { setScores } = useScores();
     const { showAlert } = useAlert();
-    const router = useRouter();
     const [subjects, setSubjects] = useState([]);
     const [topics, setTopics] = useState([]);
     const [subtopics, setSubtopics] = useState([]);
     const [questions, setQuestions] = useState([]);
-    // const [scores, setScores] = useState([]);
-    // const [userId, setUserId] = useState(null);
+    const [loading, setLoading] = useState(false);
+   
 
     const fetchSubjects = async () => {
         const { data, error } = await supabase
             .from('subjects')
             .select('*');
         if (error) {
-            console.log(error);
+            showAlert('Não foi possível carregar as matérias!', 'fail');
         } else {
             setSubjects(data);
         }
@@ -38,10 +35,9 @@ export const useDiagnosis = () => {
             .eq('subject_id', subjectId)
             
         if (error) {
-            console.log(error);
+            showAlert('Não foi possível carregar os tópicos!', 'fail');
         } else {
             setTopics(data);
-            console.log(data);
         }
     }
 
@@ -51,14 +47,14 @@ export const useDiagnosis = () => {
             .select('*')
             .eq('topic_id', topicId);
         if (error) {
-            console.log(error);
+            showAlert('Não foi possível carregar os sub-tópicos!', 'fail');
         } else {
             setSubtopics(data);
-            console.log(data);
         }
     }
 
     const fetchQuestions = async (subtopicId) => {
+        setLoading(true);
         const { data, error } = await supabase
             .from('questions')
             .select('*')
@@ -66,11 +62,11 @@ export const useDiagnosis = () => {
             .range(0, 4);
 
         if (error) {
-            console.log(error);
+            showAlert('Não foi possível carregar as questões!', 'fail');
         } else {
             setQuestions(data);
-            console.log(data);
         }
+        setLoading(false);
     }
 
     const saveScore = async (subtopic_id, score) => {  
@@ -84,7 +80,6 @@ export const useDiagnosis = () => {
 
         if (error) {
             showAlert('Erro ao salvar diagnóstico!', 'error');
-            console.log(error);
             return;
         } 
 
@@ -100,14 +95,12 @@ export const useDiagnosis = () => {
                     name
                 )`)
             .eq('user_id', user.id)
-            // .join('subtopics', { 'subtopics.id': 'user_subtopic_scores.subtopic_id' })
             .order('created_at', { ascending: false });
 
         if (error) {
-            console.log(error);
+            showAlert('Erro ao carregar diagnósticos!', 'error');
         } else {
             setScores(data);
-            // console.log(data);
         }
     }
 
@@ -122,11 +115,10 @@ export const useDiagnosis = () => {
         topics,
         subtopics,
         questions,
-        // scores,
+        loading,
         fetchTopics,
         fetchSubtopics,
         fetchQuestions,
-        // fetchScores,
         saveScore,
     };
 
