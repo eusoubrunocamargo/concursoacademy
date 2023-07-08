@@ -44,7 +44,6 @@ export const AlertProvider = ({ children }) => {
                 left: 0,
                 display: 'flex',
                 justifyContent: 'center',
-                // backgroundColor: '#F8F9FA',
                 color: '#1e1e1e',
             }}>
                 <div style={{
