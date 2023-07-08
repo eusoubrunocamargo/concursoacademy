@@ -1,13 +1,15 @@
 import styles from './Diagnosis.module.css'
 import { useEffect, useState } from 'react'
 import { useDiagnosis } from '../../hooks/useDiagnosis';
+import { useAuth } from '../../hooks/useAuth';
 import { useAlert } from '@/hooks/useAlert';
 
 export default function Diagnosis({ questions, setOpenDiagnosis }) {
 
     
 
-    const { saveScore } = useDiagnosis();
+    const { saveScore, saveQuestionsAnswers } = useDiagnosis();
+    const { user } = useAuth();
     // const { showAlert } = useAlert();
 
     const [questionWithPerformance, setQuestionWithPerformance] = useState(
@@ -91,6 +93,7 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
     const [errorType, setErrorType] = useState('');
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [performance, setPerformance] = useState(null);
+    const [questionsAnswers, setQuestionsAnswers] = useState([]);
     
     const handleConfidenceLevel = (e) => {
         setConfidenceLevel(e.target.value);
@@ -150,13 +153,19 @@ export default function Diagnosis({ questions, setOpenDiagnosis }) {
                 bruteScore = 0;
             }
             setPerformance(Number(bruteScore*100).toFixed(2));
+
+            setQuestionsAnswers(questionWithPerformance.map((question) => ({
+                question_id: question.id,
+                is_correct: question.is_answered_correctly,
+                user_id: user.id,
+            })));
         }
     }, [showFinalScore]);
 
     const handleSaveDiagnosis = () => {
         saveScore(questions[0].subtopic_id, performance);
+        saveQuestionsAnswers(questionsAnswers);
         setOpenDiagnosis(false);
-        // setUpdateScores(prevState => !prevState);
     }
 
     if (questions.length === 0 || !questions) return <h1>...</h1>

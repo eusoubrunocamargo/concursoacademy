@@ -87,6 +87,20 @@ export const useDiagnosis = () => {
         fetchScores();
     }
 
+    const saveQuestionsAnswers = async (answers) => {
+        const { error } = await supabase
+            .from('user_subtopic_answers')
+            .insert(answers);
+
+        if (error) {
+            showAlert('Erro ao salvar respostas!', 'error');
+            return;
+        }
+
+        showAlert('Respostas salvas!', 'success');
+    }
+            
+
     const fetchScores = async () => {
         const { data, error } = await supabase
             .from('user_subtopic_scores')
@@ -120,6 +134,7 @@ export const useDiagnosis = () => {
         fetchSubtopics,
         fetchQuestions,
         saveScore,
+        saveQuestionsAnswers,
     };
 
 
