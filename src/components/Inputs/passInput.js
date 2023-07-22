@@ -1,4 +1,4 @@
-import styles from '@/styles/FormInput.module.css'
+import styles from './FormInput.module.css';
 import { useState } from 'react';
 
 function PassInput({ signUpForm , setSignUpForm }){

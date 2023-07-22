@@ -1,3 +1,14 @@
+:root {
+  --main__pink: #e00474;
+  --main__blue: #213363;
+  --main__yellow: #FFA629;
+  --main__white: #f8f9fa;
+  --main__black: #1e1e1e;
+  --main__gray: #333;
+  --main__green: #4BB543;
+  --main__red: #D26666;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,14 +16,17 @@
 }
 
 main {
-  display: flex;
-  height: 100vh;
+  /* display: flex; */
+  /* height: 100vh; */
+  font-family: 'Rubik', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  /* height: 100vh; */
 }
 
 html {
@@ -21,6 +35,8 @@ html {
 
 body {
   font-size: 1.6rem;
+  height: 100vh;
+  background-color: var(--main__gray);
 }
 
 a {
@@ -28,7 +44,7 @@ a {
   text-decoration: none;
 }
 
-button, input {
+button, input, select {
   all: unset;
   cursor: pointer;
   box-sizing: border-box;

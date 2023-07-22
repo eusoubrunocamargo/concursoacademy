@@ -1,0 +1,95 @@
+.slotContainer {
+    position: relative;
+    display: grid;
+    grid-template-rows: 10rem 3rem 3rem;
+    grid-template-columns: 1fr;
+    background-color: #333;
+    color: #f8f9fa;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 14rem;
+    height: 19rem;
+    gap: .5rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.slotContainer__btnMenu:hover {
+    transform: scale(1.1);
+    transform: rotate(90deg);
+}
+
+.slotOptions__menuButton {
+    background-color: #e00474;
+    color: #F8F9FA;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: .5rem;
+}
+
+.slotContainer__title {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem 3rem 3rem;
+    gap: .5rem;
+    text-align: center;
+    font-size: small;
+    height: 100%;
+    color: #f8f9fa;
+}
+
+.slotContainer__title__text {
+    grid-area: 1/1/4/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slotContainer__score {
+    background-color: #FFA629;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: .5rem;
+    color: #333;
+}
+
+.slotContainer__score::after {
+    content: '%';
+}
+
+.slotContainer__daysUntilReview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    height: 100%;
+    border-radius: .5rem;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* .dialogBox {
+    position: absolute;
+    font-size: small;
+    z-index: 100;
+    right: -32rem;
+    background-color: #F8F9FA;
+    color: #333;
+    border: solid 1px #333;
+    border-radius: .5rem;
+    width: 30rem;
+    height: 8rem;
+    max-width: 144rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+  } */

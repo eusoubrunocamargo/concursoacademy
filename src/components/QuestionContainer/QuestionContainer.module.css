@@ -1,0 +1,112 @@
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.questionContainer__header, 
+.questionContainer__question__text,
+.questionContainer__question__alternatives__item {
+    width: 100%;
+    color: #F8F9FA;
+    border-radius: .5rem;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.questionContainer__question__text {
+    background-color: rgba(224, 4, 116, 0.2);
+    color: #333;
+}
+
+.questionContainer__question__alternatives__item {
+    cursor: pointer;
+    flex-direction: column;
+    color: #333;
+    border: solid 1px rgb(51, 51, 51, 0.5);
+    &.questionContainer__question__alternatives__item:focus-visible {
+        all: unset;
+        height: 4rem;
+        border-radius: .5rem;
+        border: solid 2px var(--main__pink);
+    }
+}
+
+.questionContainer__question__alternatives__item__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.questionContainer__header {
+    background-color: #E00474;
+}
+
+.questionContainer__question {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.questionContainer__question__alternatives {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.confidenceLevel, .btnAnswer {
+    width: 28rem;
+    height: 4rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: #F8F9FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confidenceLevel {
+    background-color: #E00474;    
+}
+.confidenceLevel select {
+    width: 100%;
+    height: 100%;
+    background-color: #E00474;
+    color: #F8F9FA;
+    font-size: 1.6rem;
+    border: none;
+    text-align: center;
+}
+
+.btnAnswer {
+    background-color: #213363;
+}
+
+.btnAnswer:disabled {
+    background-color: #888;
+}
+
+.isCorrect {
+    background-color: var(--main__green);
+}
+
+.isWrong {
+    background-color: var(--main__red);
+}
+
+.happyEmoji::after {
+    content: \1F44F;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}

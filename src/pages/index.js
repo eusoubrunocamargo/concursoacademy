@@ -47,10 +47,15 @@ const RenderSection = ({
 
 export default function Home() {
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, user } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showConfirmEmail, setShowConfirmEmail] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
+  // console.log(user);
+
+  if(user){
+    router.push('/dashboard');
+  }
 
   const handleLoginSignUp = () => {
     setIsLogin(!isLogin);

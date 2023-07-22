@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useMemo } from "react";
 
 const ScoresContext = createContext();
 
@@ -9,8 +9,10 @@ export const ScoresProvider = ({ children }) => {
 
     const [scores, setScores] = useState([]);
 
+    const value = useMemo(() => ({ scores, setScores }), [scores, setScores]);
+
     return (
-        <ScoresContext.Provider value={{ scores, setScores }}>
+        <ScoresContext.Provider value={value}>
             {children}
         </ScoresContext.Provider>
     )

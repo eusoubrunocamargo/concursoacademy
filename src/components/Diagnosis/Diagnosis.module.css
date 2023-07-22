@@ -1,137 +1,32 @@
 .diagnosisContainer {
-    background-color: #333;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 90%;
+    background-color: #f8f9fa;
+    border-radius: .5rem;
+    padding: 1rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-
-.mainDiagnosisContainer {
-    font-size: 1.4rem;
-    background-color: #F8F9FA;
-    width: 90rem;
-    min-height: 60rem;
-    max-height: 100vh;
-    border-radius: .5rem;
+.diagnosisContainer__header, .diagnosisContainer__finishDiagnosis {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem;
-    gap: 2rem;
-    overflow-y: auto;
-}
-
-.btnClose {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #FFA629;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 100%;
-    display: flex;
+    padding: 0 1rem;
+    color: #f8f9fa;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
-}
-
-.containerAnswers {
-    /* background-color: #999; */
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    gap: 1rem;
+    height: 4rem;
+    border-radius: 0.5rem;
+    background-color: #213363;
 }
 
-.controller {
-    /* background-color: #999; */
-    width: 20rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.controller button {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 100%;
-    border: solid 1px #1e1e1e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.activeBtnController {
-    background-color: #FFA629;
-}
-
-.containerQuestion {
-    background-color: #b3b3b373;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.confidenceContainer {
-    display: flex;
-    gap: .5rem;
-
-    @media screen and (max-width: 768px)  {
-        flex-direction: column;
-    }
-}
-
-.containerOption {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-.isCorrect {
-    background-color: #4BB543;
-    width: 100%;
-}
-
-.isIncorrect {
-    background-color: #d26666;
-    width: 100%;
-}
-
-.selectConfidence, .btnConfirmConfidence, .selectErrorType {
-    width: 100%;
-}
-
-.btnConfirmConfidence {
-    background-color: #FFA629;
-    border: solid 1px #1e1e1e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.btnConfirmConfidence:disabled {
-    background-color: #888;
-}
-
-.btnSaveDiagnosis {
-    width: 30rem;
-    height: 3rem;
-    background-color: #FFA629;
-    border: solid 1px #1e1e1e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.diagnosisContainer__finishDiagnosis {
+    background-color: var(--main__yellow);
+    color: var(--main__black);
+    font-weight: bold;
+    border: solid 1px #333;
+    &.diagnosisContainer__finishDiagnosis:focus {
+        border: solid 2px var(--main__pink);
+    };
 }

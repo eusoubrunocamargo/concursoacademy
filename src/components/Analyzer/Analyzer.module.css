@@ -1,0 +1,50 @@
+.analyzerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 1rem;
+}
+
+.analyzerContainer__confidenceContainer, 
+.analyzerContainer__errorTypeContainer,
+.analyzerContainer__btnAnswer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    height: 4rem;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.analyzerContainer__confidenceContainer,
+.analyzerContainer__errorTypeContainer {
+    background-color: var(--main__white);
+    border: solid 1px var(--main__pink);
+    color: var(--main__pink);
+
+    &.analyzerContainer__confidenceContainer:focus,
+    &.analyzerContainer__errorTypeContainer:focus {
+        border: solid 2px var(--main__pink);
+    };
+}
+
+.analyzerContainer__errorTypeContainer {
+    background-color: var(--main__white);
+    border: solid 1px var(--main__pink);
+    color: var(--main__pink);
+}
+
+.analyzerContainer__btnAnswer {
+    background-color: var(--main__blue);
+    color: #f8f9fa;
+
+    &.analyzerContainer__btnAnswer:focus {
+        border: solid 2px var(--main__yellow);
+    };
+
+    &.analyzerContainer__btnAnswer:disabled {
+        background-color: #888;
+    };
+}

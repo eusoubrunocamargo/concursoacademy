@@ -3,7 +3,7 @@ import { supabase } from "../../supabase";
 import { useAuth } from "./useAuth";
 import { useAlert } from "./useAlert";
 import { useScores } from "@/contexts/ScoreProvider";
-
+import { useQuestion } from "@/contexts/QuestionProvider";
 
 export const useDiagnosis = () => {
 
@@ -13,9 +13,9 @@ export const useDiagnosis = () => {
     const [subjects, setSubjects] = useState([]);
     const [topics, setTopics] = useState([]);
     const [subtopics, setSubtopics] = useState([]);
-    const [questions, setQuestions] = useState([]);
+    const [fullScores, setFullScores] = useState([]);
     const [loading, setLoading] = useState(false);
-   
+   const { setQuestions } = useQuestion();
 
     const fetchSubjects = async () => {
         const { data, error } = await supabase
@@ -63,18 +63,34 @@ export const useDiagnosis = () => {
 
         if (error) {
             showAlert('Não foi possível carregar as questões!', 'fail');
-        } else {
-            setQuestions(data);
-        }
+            return false;
+        } 
+
+        const getQuestions = data.map((question) => ({
+            ...question,
+            performance: null,
+            user_answer: null,
+            is_answered: null,
+            is_answered_correctly: null,
+            resultMessage: null,
+        }));
+      
+        setQuestions(getQuestions);
+
         setLoading(false);
+        return true;
     }
 
-    const saveScore = async (subtopic_id, score) => {  
+    const saveScore = async (subject_id, topic_id, subtopic_id, score) => {  
+
+        if(score < 0) {
+            score = 0;
+        };
         
         const { error } = await supabase
             .from('user_subtopic_scores')
             .insert([
-                { subtopic_id: subtopic_id, score: score, user_id: user.id}
+                { subtopic_id: subtopic_id, score: score, user_id: user.id, subject_id: subject_id, topic_id: topic_id}
             ])
             .select();
 
@@ -100,7 +116,6 @@ export const useDiagnosis = () => {
         showAlert('Respostas salvas!', 'success');
     }
             
-
     const fetchScores = async () => {
         const { data, error } = await supabase
             .from('user_subtopic_scores')
@@ -118,18 +133,45 @@ export const useDiagnosis = () => {
         }
     }
 
+    const fetchFullScores = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+            .from('user_subtopic_scores')
+            .select(`*,
+                subtopics (
+                    name
+                ),
+                    topics (
+                        name
+                        ),
+                        subjects (
+                            name
+                            )`)
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: true });
+
+        if (error) {
+            showAlert('Erro ao carregar histórico!', 'error');
+            return;
+        } 
+
+        setFullScores(data);
+        setLoading(false);
+    }
+
 
     useEffect(() => {
         fetchSubjects();
         fetchScores();
+        fetchFullScores();
     }, []);
 
     return {
         subjects,
         topics,
         subtopics,
-        questions,
         loading,
+        fullScores,
         fetchTopics,
         fetchSubtopics,
         fetchQuestions,
