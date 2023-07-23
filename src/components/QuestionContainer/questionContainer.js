@@ -54,9 +54,9 @@ export default function QuestionContainer({
     const emoji = (option) => {
         if(clickedOption === option) {
             if(questions[index].is_answered_correctly === true) {
-                return <p style={{margin:'0 1rem'}}>&#128079; "{questions[index].resultMessage}"</p>;
+                return <p style={{margin:'0 1rem'}}>&#128079; {questions[index].resultMessage}</p>;
             } else if(questions[index].is_answered_correctly === false) {
-                return <p style={{margin:'0 1rem'}}>&#128577; "{questions[index].resultMessage}"</p>;
+                return <p style={{margin:'0 1rem'}}>&#128577; {questions[index].resultMessage}</p>;
             }
         }
     }

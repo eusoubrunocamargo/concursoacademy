@@ -2,20 +2,20 @@ import SlotContainer from '../SlotContainer/slotContainer';
 import styles from './statusContainer.module.css'
 import { useState } from 'react';
 
-export default function StatusContainer({ children }) {
+export default function StatusContainer({ subtopics, status, setOpenDiagnosis }) {
 
-    const subtopics = Array.isArray(children.subtopics) ? children.subtopics : [];
+    const mysubtopics = Array.isArray(subtopics) ? subtopics : [];
     // console.log(subtopics);
 
     let backgroundColor = '';
     let title = '';
     let daysUntilReview = 0;
 
-    if(children.status === 'approved') {
+    if(status === 'approved') {
         backgroundColor = '#4BB543';
         title = 'Matérias aprovadas';
         daysUntilReview = 28;
-    } else if(children.status === 'notApproved') {
+    } else if(status === 'notApproved') {
         backgroundColor = '#d26666';
         title = 'Matérias não aprovadas';
         daysUntilReview = 7;
@@ -33,13 +33,13 @@ export default function StatusContainer({ children }) {
                 backgroundColor: backgroundColor,
             }} className={styles.statusContainer__header}>
                 <span>{title}</span>
-                <div className={styles.statusContainer__header__slotLength}>{subtopics.length}/8</div>
+                <div className={styles.statusContainer__header__slotLength}>{mysubtopics.length}/8</div>
             </div>
             {showSlotContainer && 
             <div className={styles.statusContainer__content}>
-                {subtopics.map((subtopic, index) => {
+                {mysubtopics.map((subtopic, index) => {
                     return (
-                        <SlotContainer setOpenDiagnosis={children.setOpenDiagnosis} key={index} children={subtopic} days={daysUntilReview}/>
+                        <SlotContainer setOpenDiagnosis={setOpenDiagnosis} key={index} subtopic={subtopic} days={daysUntilReview}/>
                     )
                 })}
             </div>}

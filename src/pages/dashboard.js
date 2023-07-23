@@ -52,9 +52,9 @@ export default function Dashboard() {
                     <>
                     <SelectContainer setQuestions={setQuestions} setOpenDiagnosis={setOpenDiagnosis} setOpenPerformance={setOpenPerformance} openPerformance={openPerformance} />
                     {openPerformance && <PerformanceContainer setOpenPerformance={setOpenPerformance} />}
-                    <StatusContainer children={{ status: 'notApproved', subtopics: notApprovedSubtopics, setOpenDiagnosis: setOpenDiagnosis }}/>
-                    <StatusContainer children={{ status: 'attention' , subtopics: attentionSubtopics, setOpenDiagnosis: setOpenDiagnosis }}/>
-                    <StatusContainer children={{ status: 'approved' , subtopics: approvedSubtopics, setOpenDiagnosis: setOpenDiagnosis }}/>
+                    <StatusContainer status='notApproved' subtopics={notApprovedSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
+                    <StatusContainer status='attention' subtopics={attentionSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
+                    <StatusContainer status='approved' subtopics={approvedSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
                     </>}
                 </section>
             </main>
