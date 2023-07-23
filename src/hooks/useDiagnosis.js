@@ -83,9 +83,13 @@ export const useDiagnosis = () => {
 
     const saveScore = async (subject_id, topic_id, subtopic_id, score) => {  
 
+        
+
         if(score < 0) {
             score = 0;
         };
+
+        console.log(subject_id, topic_id, subtopic_id, score);
         
         const { error } = await supabase
             .from('user_subtopic_scores')
@@ -96,6 +100,7 @@ export const useDiagnosis = () => {
 
         if (error) {
             showAlert('Erro ao salvar diagnóstico!', 'error');
+            console.error(error);
             return;
         } 
 
