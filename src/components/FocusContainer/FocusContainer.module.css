@@ -1,0 +1,72 @@
+.focusContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main__blue);
+    z-index: 1;
+    padding: 3rem;
+}
+
+.focusContainer__closeButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.focusContainer__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--main__white);
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 10rem 0rem 2rem 0rem;
+
+    &.focusContainer__title span:last-of-type {
+        font-size: medium;
+        font-weight: 100;
+        color: var(--main__white);
+    }
+}
+
+.focusContainer__select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    /* background-color: white; */
+}
+
+.focusContainer__select select,
+.focusContainer__select__button
+{
+    width: 30rem;
+    height: 4rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: small;
+    text-align: center;
+    border: solid 1px var(--main__white);
+    color: var(--main__white);
+    &.focusContainer__select__button {
+        background-color: var(--main__yellow);
+        color: var(--main__black);
+    }
+}
+
+.focusContainer__select__select:focus,
+.focusContainer__select__button:focus {
+    border: solid 2px var(--main__pink);
+}
+
+.focusContainer__select select:disabled,
+.focusContainer__select__button:disabled
+{
+    background-color: #888;
+    opacity: 0.5;
+}

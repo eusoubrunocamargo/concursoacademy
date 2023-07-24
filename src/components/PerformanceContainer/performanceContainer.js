@@ -1,4 +1,5 @@
 import styles from './PerformanceContainer.module.css';
+import { StudyTime } from './StudyTime/studytime';
 import { useDiagnosis } from '@/hooks/useDiagnosis';
 import { useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -19,18 +20,14 @@ const options = {
     },
 };
 
-
-
 export default function PerformanceContainer() {
 
     const { fullScores, loading } = useDiagnosis();
-    console.log(fullScores);
     const [subjects, setSubjects] = useState([]);
     const [topics, setTopics] = useState([]);
-    // const [subtopics, setSubtopics] = useState([]);
     const [selectSubject, setSelectSubject] = useState('0');
     const [selectTopic, setSelectTopic] = useState('0');
-    const [selectSubtopic, setSelectSubtopic] = useState('0');
+    const [setSelectSubtopic] = useState('0');
 
     const handleSelect = (e) => {
         switch(e.target.name) {
@@ -128,6 +125,10 @@ export default function PerformanceContainer() {
     }
 
     return (
+        <>
+        <div className={styles.studyTimeContainer}>
+            <StudyTime />
+        </div>
         <div className={styles.performanceContainer}>
             {loading ? <div>Carregando...</div> : <>
 
@@ -175,5 +176,6 @@ export default function PerformanceContainer() {
                 }} options={options} />
             </div>}
         </div>
+        </>
     )
 }

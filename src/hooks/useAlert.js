@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const AlertContext = createContext();
 
@@ -77,8 +77,11 @@ export const AlertProvider = ({ children }) => {
         );
     }
 
+    const value = useMemo(() => ({ alerts, showAlert }), [alerts]);
+
+
     return (
-        <AlertContext.Provider value={{ alerts, showAlert }}>
+        <AlertContext.Provider value={value}>
             {children}
             {renderAlert()}
         </AlertContext.Provider>

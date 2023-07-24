@@ -1,7 +1,6 @@
 import styles from './slotContainer.module.css'
 import Clock from '../../../public/clock.svg'
 import Fire from '../../../public/fire.svg'
-import Happy from '../../../public/happy.svg'
 import MenuWhite from '../../../public/menu_white.svg'
 import Image from 'next/image';
 import { calcDaysUntilReview } from '@/utils/calcDaysUntilReview'
@@ -13,7 +12,6 @@ export default function SlotContainer({ subtopic, days, setOpenDiagnosis }) {
 
     const { fetchQuestions } = useDiagnosis();
     const daysUntilReview = calcDaysUntilReview(subtopic.created_at, days);
-    // const daysUntilReview = 0;
     const [openDialogBox, setOpenDialogBox] = useState({
         open: false,
         text: '',

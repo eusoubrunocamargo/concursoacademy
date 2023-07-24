@@ -1,4 +1,6 @@
-.performanceContainer {
+.performanceContainer,
+.studyTimeContainer
+{
     width: 90%;
     max-width: 144rem;
     display: flex;
@@ -108,3 +110,4 @@
     align-items: center;
     justify-content: center;
 }
+

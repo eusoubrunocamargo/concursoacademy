@@ -164,7 +164,6 @@ export const useDiagnosis = () => {
         setLoading(false);
     }
 
-
     useEffect(() => {
         fetchSubjects();
         fetchScores();

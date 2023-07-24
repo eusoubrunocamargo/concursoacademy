@@ -2,7 +2,12 @@ import styles from './selectContainer.module.css';
 import SelectSubtopic from '../SelectSubtopic/selectSubtopic';
 import { useState } from 'react';
 
-export default function SelectContainer({ setOpenDiagnosis, setQuestions, setOpenPerformance, openPerformance }) {
+export default function SelectContainer({ 
+    setOpenFocus,
+    setOpenDiagnosis, 
+    setQuestions, 
+    setOpenPerformance, 
+    openPerformance }) {
 
     const [openSelectSubtopic, setOpenSelectSubtopic] = useState(false);
 
@@ -13,7 +18,7 @@ export default function SelectContainer({ setOpenDiagnosis, setQuestions, setOpe
         },
         {
             name: 'Modo Foco',
-            action: () => console.log('Modo Foco')
+            action: () => setOpenFocus(true),
         },
         {
             name: 'Meu rendimento',

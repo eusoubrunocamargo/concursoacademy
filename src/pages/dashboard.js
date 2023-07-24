@@ -6,6 +6,7 @@ import StatusContainer from '@/components/StatusContainer/statusContainer'
 import SelectContainer from '@/components/SelectContainer/selectContainer'
 import PerformanceContainer from '@/components/PerformanceContainer/performanceContainer'
 import Diagnosis from '@/components/Diagnosis/diagnosis'
+import FocusContainer from '@/components/FocusContainer/focusContainer'
 
 export default function Dashboard() {
 
@@ -16,6 +17,7 @@ export default function Dashboard() {
     const [attentionSubtopics, setAttentionSubtopics] = useState([]);
     const [openDiagnosis, setOpenDiagnosis] = useState(false);
     const [openPerformance, setOpenPerformance] = useState(false);
+    const [openFocus, setOpenFocus] = useState(false);
     const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
@@ -46,11 +48,13 @@ export default function Dashboard() {
 
     return (
         <>
+            {openFocus && <FocusContainer setOpenFocus={setOpenFocus} />}
             <main className={styles.mainDashContainer}>                
                 <section className={styles.statusContainer}>
+                    
                     {openDiagnosis ? <Diagnosis questions={questions} setOpenDiagnosis={setOpenDiagnosis} /> :
                     <>
-                    <SelectContainer setQuestions={setQuestions} setOpenDiagnosis={setOpenDiagnosis} setOpenPerformance={setOpenPerformance} openPerformance={openPerformance} />
+                    <SelectContainer setOpenFocus={setOpenFocus} setQuestions={setQuestions} setOpenDiagnosis={setOpenDiagnosis} setOpenPerformance={setOpenPerformance} openPerformance={openPerformance} />
                     {openPerformance && <PerformanceContainer setOpenPerformance={setOpenPerformance} />}
                     <StatusContainer status='notApproved' subtopics={notApprovedSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
                     <StatusContainer status='attention' subtopics={attentionSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>

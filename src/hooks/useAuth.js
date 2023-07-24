@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../../supabase';
 import { useAlert } from './useAlert';
@@ -65,15 +65,20 @@ export const AuthProvider = ({ children }) => {
 
   }, [router]);
 
+  const value = useMemo(() => ({ user, handleSignOut, handleLogin, loadingAuth }), [user, handleSignOut, handleLogin, loadingAuth]);
+
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      handleSignOut, 
-      handleLogin,
-      loadingAuth,
-      }}>
+    <AuthContext.Provider value={value}>
         {!loadingAuth && children }
     </AuthContext.Provider>
+    // <AuthContext.Provider value={{ 
+    //   user, 
+    //   handleSignOut, 
+    //   handleLogin,
+    //   loadingAuth,
+    //   }}>
+    //     {!loadingAuth && children }
+    // </AuthContext.Provider>
   );
 };
 
