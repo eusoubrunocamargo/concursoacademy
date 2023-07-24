@@ -10,7 +10,6 @@ export default function FocusContainer({ setOpenFocus }) {
     const { 
         subjects, 
         topics, 
-        subtopics,
         fetchTopics, 
         fetchSubtopics,
     } = useDiagnosis();
