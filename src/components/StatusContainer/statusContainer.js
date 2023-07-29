@@ -29,9 +29,8 @@ export default function StatusContainer({ subtopics, status, setOpenDiagnosis })
 
     return (
         <div className={styles.statusContainer}>
-            <div onClick={() => setShowSlotContainer(!showSlotContainer)} style={{
-                backgroundColor: backgroundColor,
-            }} className={styles.statusContainer__header}>
+            <div onClick={() => setShowSlotContainer(!showSlotContainer)} className={styles.statusContainer__header}>
+                <div style={{ backgroundColor: backgroundColor }} className={styles.statusContainer__header__icon}></div>
                 <span>{title}</span>
                 <div className={styles.statusContainer__header__slotLength}>{mysubtopics.length}/8</div>
             </div>

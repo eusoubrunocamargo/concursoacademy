@@ -1,6 +1,7 @@
 .headerContainer {
     /* background-color: #213363; */
-    background-color: #F8F9FA;
+    /* background-color: #F8F9FA; */
+    background-color: var(--main__white);
     /* max-width: 144rem; */
     width: 100vw;
     height: 12rem;
@@ -14,19 +15,26 @@
         height: 18rem;
         flex-direction: column;
         padding: 3rem 1rem;
-        gap: 2rem;
+        justify-content: center;
     }
 }
 
 .logo {
-    border: solid 3px #e00474;
-    border-radius: 3rem;
+    /* border: solid 3px #e00474; */
+    /* border-radius: 3rem; */
     width: 40rem;
     height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
+
+    &.logo > span {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--main__gray);
+        font-family: 'Roboto Slab', serif;
+    }
 
     @media screen and (max-width: 768px) {
         width: 100%;

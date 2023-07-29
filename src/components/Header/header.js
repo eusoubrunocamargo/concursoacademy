@@ -22,7 +22,7 @@ export default function Header() {
     <>
       <header className={styles.headerContainer}>
         <div className={styles.logo}>
-          <span style={{ fontSize: '3rem', fontFamily: 'Oswald, sans-serif', fontWeight: 'bold'}}>concurseiro<span style={{ color: '#e00474'}}>.academy</span></span>
+          <span>concurseiro//<span style={{ color: 'var(--main__pink)'}}>academy</span></span>
         </div>
         <div className={styles.greetingMenu}>
           <span>Olá, {user.user_metadata.username}!</span>

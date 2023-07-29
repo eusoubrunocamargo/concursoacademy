@@ -7,7 +7,10 @@ export default function SelectContainer({
     setOpenDiagnosis, 
     setQuestions, 
     setOpenPerformance, 
-    openPerformance }) {
+    openPerformance,
+    setOpenNotebook,
+    openNotebook,
+}) {
 
     const [openSelectSubtopic, setOpenSelectSubtopic] = useState(false);
 
@@ -25,8 +28,8 @@ export default function SelectContainer({
             action: () => setOpenPerformance(!openPerformance),
         },
         {
-            name: 'Caderno de erros',
-            action: () => console.log('Caderno de erros')
+            name: 'Meu caderno',
+            action: () => setOpenNotebook(!openNotebook),
         },
     ]
 

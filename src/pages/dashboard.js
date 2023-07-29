@@ -7,6 +7,7 @@ import SelectContainer from '@/components/SelectContainer/selectContainer'
 import PerformanceContainer from '@/components/PerformanceContainer/performanceContainer'
 import Diagnosis from '@/components/Diagnosis/diagnosis'
 import FocusContainer from '@/components/FocusContainer/focusContainer'
+import { NotebookContainer } from '@/components/NotebookContainer/notebookContainer'
 
 export default function Dashboard() {
 
@@ -17,6 +18,7 @@ export default function Dashboard() {
     const [attentionSubtopics, setAttentionSubtopics] = useState([]);
     const [openDiagnosis, setOpenDiagnosis] = useState(false);
     const [openPerformance, setOpenPerformance] = useState(false);
+    const [openNotebook, setOpenNotebook] = useState(false);
     const [openFocus, setOpenFocus] = useState(false);
     const [questions, setQuestions] = useState([]);
 
@@ -54,8 +56,17 @@ export default function Dashboard() {
                     
                     {openDiagnosis ? <Diagnosis questions={questions} setOpenDiagnosis={setOpenDiagnosis} /> :
                     <>
-                    <SelectContainer setOpenFocus={setOpenFocus} setQuestions={setQuestions} setOpenDiagnosis={setOpenDiagnosis} setOpenPerformance={setOpenPerformance} openPerformance={openPerformance} />
+                    <SelectContainer 
+                        setOpenFocus={setOpenFocus} 
+                        setQuestions={setQuestions} 
+                        setOpenDiagnosis={setOpenDiagnosis} 
+                        setOpenPerformance={setOpenPerformance} 
+                        openPerformance={openPerformance}
+                        setOpenNotebook={setOpenNotebook}
+                        openNotebook={openNotebook}
+                    />
                     {openPerformance && <PerformanceContainer setOpenPerformance={setOpenPerformance} />}
+                    {openNotebook && <NotebookContainer setOpenNotebook={setOpenNotebook} />}
                     <StatusContainer status='notApproved' subtopics={notApprovedSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
                     <StatusContainer status='attention' subtopics={attentionSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>
                     <StatusContainer status='approved' subtopics={approvedSubtopics} setOpenDiagnosis={setOpenDiagnosis}/>

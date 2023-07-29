@@ -68,14 +68,17 @@ export default function QuestionContainer({
         }
     }
 
-    console.log(questions);
+    // console.log(questions);
 
     return (
         <div className={styles.questionContainer}>
             <div className={styles.questionContainer__header}>
-                <Image style={{cursor:'pointer'}} onClick={() => questionNavigate('previous')} src={LeftArrow} alt="Questão anterior" width={60} height={60} />
-                <h1>Questão {index + 1}</h1>
-                <Image style={{cursor:'pointer'}} onClick={() => questionNavigate('next')} src={RightArrow} alt="Próxima questão" width={60} height={60} />
+                <div className={styles.questionContainer__header__controllerContainer}>
+                    <Image style={{cursor:'pointer'}} onClick={() => questionNavigate('previous')} src={LeftArrow} alt="Questão anterior" width={60} height={60} />
+                        <h1>Questão {index + 1}</h1>
+                    <Image style={{cursor:'pointer'}} onClick={() => questionNavigate('next')} src={RightArrow} alt="Próxima questão" width={60} height={60} />
+                </div>
+                <button className={styles.questionContainer__header__btnAddToNotebook}>Adicionar ao caderno</button>
             </div>
             <div className={styles.questionContainer__question}>
                 <div className={styles.questionContainer__question__text}>

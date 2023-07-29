@@ -12,18 +12,27 @@
 .statusContainer__header {
     display: flex;
     padding: 0 1rem;
-    color: #f8f9fa;
+    color: var(--main__gray);
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     height: 4rem;
     border-radius: .5rem;
     cursor: pointer;
     gap: 1rem;
+    font-family: 'Roboto Slab', serif;
+
+    &.statusContainer__header > span {
+        width: 20rem;
+    }
+}
+
+.statusContainer__header__icon {
+    width: 4rem;
+    height: 4rem;
 }
 
 .statusContainer__header__slotLength {
-    background-color: var(--main__white);
+    border: solid 1px var(--main__gray);
     color: var(--main__gray);
     width: 5rem;
     display: flex;

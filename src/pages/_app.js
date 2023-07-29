@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import Header from '@/components/Header/header';
 import { Rubik } from 'next/font/google';
 import { Oswald } from 'next/font/google';
+import { Roboto_Slab } from 'next/font/google';
 import Head from 'next/head';
 import { AuthProvider } from '@/hooks/useAuth';
 import { AlertProvider } from '@/hooks/useAlert';
@@ -11,6 +12,7 @@ import { QuestionProvider } from '@/contexts/QuestionProvider';
 // const workSans = Work_Sans({subsets: ['latin']})
 const rubik = Rubik({subsets: ['latin']})
 const oswald = Oswald({subsets: ['latin']})
+const robotoSlab = Roboto_Slab({subsets: ['latin']})
 
 
 export default function App({ Component, pageProps }) {
@@ -26,7 +28,7 @@ export default function App({ Component, pageProps }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
               </Head>
-              <main className={`${rubik.className} ${oswald.className}`}>
+              <main className={`${rubik.className} ${oswald.className} ${robotoSlab.className}`}>
                 <Header />
                 <Component {...pageProps} />
               </main>
